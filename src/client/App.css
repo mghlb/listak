@@ -32,3 +32,11 @@
   font-size: larger;
   padding: 10px;
 }
+
+.valid-link {
+  border: solid greenyellow 1px;
+}
+
+.unValid-link {
+  border: solid red 1px;
+}
