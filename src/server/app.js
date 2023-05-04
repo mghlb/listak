@@ -1,9 +1,9 @@
-import express, {json} from 'express'
+import express from 'express'
 import cors from 'cors'
 const app = express()
 
 app.use(cors())
-app.use(json())
+app.use(express.json())
 
 app.get('/:listId', (req, res) => {
   const id = req.params.listId

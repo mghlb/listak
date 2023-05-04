@@ -1,7 +1,8 @@
 import {useState, useEffect} from 'react'
 import listakLogo from './assets/logo.webp'
 import './App.css'
-import {validUrl} from './utils/validator'
+import validUrl from './utils/validator'
+import extractId from './utils/extractId'
 
 function App() {
   const [link, setLink] = useState('')
@@ -10,8 +11,9 @@ function App() {
 
   useEffect(() => {
     const getData = async (url = link) => {
-      const data = await fetch(baseUrl)
-      console.log(data.type)
+      const id = extractId(url)
+      const data = await fetch(baseUrl + `/${id}`)
+      setBody(data)
     }
 
     if (validUrl(link)) getData()
