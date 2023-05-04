@@ -1,19 +1,19 @@
 import {useState, useEffect} from 'react'
 import listakLogo from './assets/logo.webp'
 import './App.css'
-import validUrl from './utils/validator'
-import extractId from './utils/extractId'
+import validUrl from './utils/validator.js'
+import extractId from './utils/extractId.js'
 
 function App() {
   const [link, setLink] = useState('')
-  const [body, setBody] = useState('')
   const baseUrl = 'http://localhost:3000'
 
   useEffect(() => {
     const getData = async (url = link) => {
       const id = extractId(url)
-      const data = await fetch(baseUrl + `/${id}`)
-      setBody(data)
+      const res = await fetch(baseUrl + `/${id}`)
+      const data = await res.json()
+      console.log(data)
     }
 
     if (validUrl(link)) getData()
@@ -32,7 +32,6 @@ function App() {
           value={link}
           onChange={event => setLink(event.target.value)}
         />
-        <img src={body} alt="" />
       </div>
     </>
   )
