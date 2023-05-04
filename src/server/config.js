@@ -1,5 +1,1 @@
-const IN_PRODUCTION = process.env.NODE_ENV === 'production'
-
-module.exports = {
-  IN_PRODUCTION
-}
+export const PORT = process.env.PORT || 3000

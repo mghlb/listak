@@ -1,9 +1,18 @@
-const express = require('express')
-const cors = require('cors')
+import express, {json} from 'express'
+import cors from 'cors'
 const app = express()
-require('dotenv').config()
 
 app.use(cors())
-app.use(express.json())
+app.use(json())
 
-module.exports = app
+app.get('/:listId', (req, res) => {
+  const id = req.params.listId
+  const url = `https://imdb-api.com/en/API/IMDbList/${process.env.API_KEY}/${id}`
+  res.json(url)
+})
+
+app.get('/', (req, res) => {
+  res.send('hello')
+})
+
+export default app
