@@ -1,11 +1,14 @@
-import {useState, useEffect} from 'react'
-import listakLogo from './assets/logo.webp'
 import './App.css'
+import listakLogo from './assets/logo.webp'
+import {useState, useEffect} from 'react'
 import validUrl from './utils/validator.js'
 import extractId from './utils/extractId.js'
+import {data} from '../../data'
+import {CSVLink} from 'react-csv'
 
 function App() {
   const [link, setLink] = useState('')
+  const [csv, setCsv] = useState(data)
   const baseUrl = 'http://localhost:3000'
 
   useEffect(() => {
@@ -13,7 +16,7 @@ function App() {
       const id = extractId(url)
       const res = await fetch(baseUrl + `/${id}`)
       const data = await res.json()
-      console.log(data)
+      setCsv(data)
     }
 
     if (validUrl(link)) getData()
@@ -32,6 +35,9 @@ function App() {
           value={link}
           onChange={event => setLink(event.target.value)}
         />
+      </div>
+      <div>
+        <CSVLink data={csv}>Download me</CSVLink>
       </div>
     </>
   )
