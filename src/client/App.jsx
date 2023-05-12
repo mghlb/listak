@@ -3,12 +3,11 @@ import listakLogo from './assets/logo.webp'
 import {useState, useEffect} from 'react'
 import validUrl from './utils/validator.js'
 import extractId from './utils/extractId.js'
-import {data} from '../../data'
 import {CSVLink} from 'react-csv'
 
 function App() {
   const [link, setLink] = useState('')
-  const [csv, setCsv] = useState(data)
+  const [csv, setCsv] = useState([])
   const baseUrl = 'http://localhost:3000'
 
   useEffect(() => {
@@ -36,9 +35,9 @@ function App() {
           onChange={event => setLink(event.target.value)}
         />
       </div>
-      <div>
-        <CSVLink data={csv}>Download me</CSVLink>
-      </div>
+      <CSVLink data={csv}>
+        <button className="button-5">Save file</button>
+      </CSVLink>
     </>
   )
 }
