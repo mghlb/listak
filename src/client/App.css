@@ -26,19 +26,19 @@
 }
 
 .input-field {
+  border: 1px solid blanchedalmond;
   border-radius: 30px;
-  border: none;
   height: 30px;
   font-size: larger;
   padding: 10px;
 }
 
 .valid-link {
-  border: solid greenyellow 1px;
+  border: 1px solid greenyellow;
 }
 
 .unValid-link {
-  border: solid red 1px;
+  border: 1px solid red;
 }
 
 .button-5 {
@@ -47,9 +47,8 @@
   background-color: #fb8332;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
   box-sizing: border-box;
-  color: #4d0f35d9;
+  color: #0d0d0dd9;
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
   display: inline-flex;
@@ -70,16 +69,10 @@
   width: auto;
 }
 
-.button-5:hover,
-.button-5:focus {
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
-}
-
 .button-5:hover {
   transform: translateY(-2px);
 }
 
 .button-5:active {
-  box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
 }

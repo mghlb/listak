@@ -7,7 +7,7 @@ import {CSVLink} from 'react-csv'
 
 function App() {
   const [link, setLink] = useState('')
-  const [csv, setCsv] = useState([])
+  const [csv, setCsv] = useState({title: '', items: []})
   const baseUrl = 'http://localhost:3000'
 
   useEffect(() => {
@@ -15,7 +15,11 @@ function App() {
       const id = extractId(url)
       const res = await fetch(baseUrl + `/${id}`)
       const data = await res.json()
-      setCsv(data)
+      setCsv({
+        title: data.title,
+        // eslint-disable-next-line no-unused-vars
+        items: data.items.map(({image, ...item}) => item)
+      })
     }
 
     if (validUrl(link)) getData()
@@ -35,7 +39,8 @@ function App() {
           onChange={event => setLink(event.target.value)}
         />
       </div>
-      <CSVLink data={csv}>
+      <div>{csv.title}</div>
+      <CSVLink data={csv.items} filename={csv.title}>
         <button className="button-5">Save file</button>
       </CSVLink>
     </>
