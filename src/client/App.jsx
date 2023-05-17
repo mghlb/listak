@@ -9,6 +9,7 @@ function App() {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
   const baseUrl = 'http://localhost:3000'
+  const csvCheck = csv.items.length > 0
 
   useEffect(() => {
     const getData = async (url = link) => {
@@ -29,9 +30,12 @@ function App() {
     <>
       <img src={listakLogo} alt="Listak-logo" className="logo" />
       <div className="input-container">
-        <label htmlFor="list-link">Paste link of list: </label>
+        <label htmlFor="list-link">
+          Paste link of IMDB or Letterboxd list:{' '}
+        </label>
         <input
           type="url"
+          placeholder="eg. https://www.imdb.com/list/ls012345678"
           name="list-link"
           id="list-link"
           className="input-field"
@@ -39,10 +43,11 @@ function App() {
           onChange={event => setLink(event.target.value)}
         />
       </div>
-      <div>{csv.title}</div>
-      <CSVLink data={csv.items} filename={csv.title}>
-        <button className="button-5">Save file</button>
-      </CSVLink>
+      {csvCheck && (
+        <CSVLink data={csv.items} filename={csv.title}>
+          <button className="button-5">Save file</button>
+        </CSVLink>
+      )}
     </>
   )
 }
