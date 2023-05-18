@@ -14,7 +14,6 @@ function App() {
     const getData = async (url = link) => {
       const id = extractId(url)
       const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
-      console.log(import.meta.env.VITE_BASE_URL)
       const data = await res.json()
       setCsv({
         title: data.title,

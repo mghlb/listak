@@ -6,10 +6,6 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.send('HI')
-})
-
 app.get('/:listId', async (req, res) => {
   const id = req.params.listId
   const url = `https://imdb-api.com/en/API/IMDbList/${process.env.API_KEY}/${id}`
