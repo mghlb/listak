@@ -8,13 +8,12 @@ import {CSVLink} from 'react-csv'
 function App() {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
-  const baseUrl = 'https://listak.onrender.com/'
-  const csvCheck = csv.items.length > 0
+  const listCheck = csv.items.length > 0
 
   useEffect(() => {
     const getData = async (url = link) => {
       const id = extractId(url)
-      const res = await fetch(baseUrl + `/${id}`)
+      const res = await fetch(process.env.BASE_URL + `/${id}`)
       const data = await res.json()
       setCsv({
         title: data.title,
@@ -43,7 +42,7 @@ function App() {
           onChange={event => setLink(event.target.value)}
         />
       </div>
-      {csvCheck && (
+      {listCheck && (
         <CSVLink data={csv.items} filename={csv.title}>
           <button className="button-5">Save file</button>
         </CSVLink>
