@@ -6,6 +6,10 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+app.get('/', (req, res) => {
+  res.send('HI')
+})
+
 app.get('/:listId', async (req, res) => {
   const id = req.params.listId
   console.log(process.env.API_KEY)

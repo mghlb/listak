@@ -8,7 +8,7 @@ import {CSVLink} from 'react-csv'
 function App() {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
-  const baseUrl = 'http://localhost:3000'
+  const baseUrl = 'https://listak.onrender.com/'
   const csvCheck = csv.items.length > 0
 
   useEffect(() => {
