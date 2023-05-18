@@ -12,11 +12,14 @@ app.get('/', (req, res) => {
 
 app.get('/:listId', async (req, res) => {
   const id = req.params.listId
-  console.log(process.env.API_KEY)
   const url = `https://imdb-api.com/en/API/IMDbList/${process.env.API_KEY}/${id}`
-  const response = await fetch(url)
-  const data = await response.json()
-  res.json(data)
+  try {
+    const response = await fetch(url)
+    const data = await response.json()
+    res.json(data)
+  } catch {
+    res.status(500).send('Server problems... Try again later.')
+  }
 })
 
 export default app
