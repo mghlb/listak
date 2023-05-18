@@ -76,3 +76,17 @@
 .button-5:active {
   transform: translateY(0);
 }
+
+.spinner {
+  animation: rotation 2s infinite linear;
+  font-size: xx-large;
+}
+
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
+}

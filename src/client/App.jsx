@@ -8,10 +8,12 @@ import {CSVLink} from 'react-csv'
 function App() {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
+  const [spinner, setSpinner] = useState(false)
   const listCheck = csv.items.length > 0
 
   useEffect(() => {
     const getData = async (url = link) => {
+      setSpinner(true)
       const id = extractId(url)
       const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
       const data = await res.json()
@@ -20,6 +22,7 @@ function App() {
         // eslint-disable-next-line no-unused-vars
         items: data.items.map(({image, ...item}) => item)
       })
+      setSpinner(false)
     }
 
     if (validUrl(link)) getData()
@@ -42,6 +45,7 @@ function App() {
           onChange={event => setLink(event.target.value)}
         />
       </div>
+      {spinner && <div className="spinner">⌛</div>}
       {listCheck && (
         <CSVLink data={csv.items} filename={csv.title}>
           <button className="button-5">Save file</button>
