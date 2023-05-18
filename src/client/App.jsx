@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     const getData = async (url = link) => {
       const id = extractId(url)
-      const res = await fetch(process.env.BASE_URL + `/${id}`)
+      const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
       const data = await res.json()
       setCsv({
         title: data.title,
