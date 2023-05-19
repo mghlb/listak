@@ -45,8 +45,8 @@ function App() {
           onChange={event => setLink(event.target.value)}
         />
       </div>
-      {spinner && <div className="spinner">⌛</div>}
-      {listCheck && (
+      {spinner && <div className="spinner">⏳</div>}
+      {!spinner && listCheck && (
         <CSVLink data={csv.items} filename={csv.title}>
           <button className="button-5">Save file</button>
         </CSVLink>
