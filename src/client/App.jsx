@@ -20,7 +20,7 @@ function App() {
       setCsv({
         title: data.title,
         // eslint-disable-next-line no-unused-vars
-        items: data.items.map(({image, ...item}) => item)
+        items: data.items.map(({image, fullTitle, ...item}) => item)
       })
       setSpinner(false)
     }
