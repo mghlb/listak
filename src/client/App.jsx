@@ -9,23 +9,27 @@ function App() {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
   const [spinner, setSpinner] = useState(false)
+  const [listCache, setListCache] = useState(new Map())
   const listCheck = csv.items.length > 0
 
   useEffect(() => {
-    const getData = async (url = link) => {
+    const id = extractId(link)
+    const getData = async () => {
       setSpinner(true)
-      const id = extractId(url)
       const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
       const data = await res.json()
-      setCsv({
+      const listObj = {
         title: data.title,
         // eslint-disable-next-line no-unused-vars
         items: data.items.map(({image, fullTitle, ...item}) => item)
-      })
+      }
+      setCsv(listObj)
       setSpinner(false)
+      setListCache(listCache.set(id, listObj))
     }
 
-    if (validUrl(link)) getData()
+    if (listCache.has(id)) setCsv(listCache.get(id))
+    if (validUrl(link) && !listCache.has(id)) getData()
   }, [link])
 
   return (
