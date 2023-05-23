@@ -1,6 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import fetch from 'node-fetch'
+import scrapList from './scrapList.js'
 const app = express()
 
 app.use(cors())
@@ -15,6 +16,17 @@ app.get('/:listId', async (req, res) => {
     res.json(data)
   } catch {
     res.status(500).send('Server problems... Try again later.')
+  }
+})
+
+app.get('/:userId/list/:listId', async (req, res) => {
+  const {userId, listId} = req.params
+  const params = `${userId}/list/${listId}`
+  try {
+    const data = await scrapList(params)
+    res.json(data)
+  } catch (error) {
+    res.status(500).send(error)
   }
 })
 

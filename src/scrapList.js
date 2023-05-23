@@ -1,17 +1,17 @@
 import fetch from 'node-fetch'
 import {parse} from 'node-html-parser'
 
-export default async function scrapList(link) {
+export default async function scrapList(id) {
   const letterboxd = 'https://letterboxd.com'
   const list = []
   let h1 = ''
 
   // eslint-disable-next-line no-constant-condition
   while (true) {
-    const res = await fetch(link)
+    const res = await fetch(`${letterboxd}/${id}`)
     const page = await res.text()
     const document = parse(page)
-    h1 = document.querySelector('.title-1')
+    h1 = document.querySelector('.title-1').textContent
     const documentList = document.querySelector('.film-list')
     const films = documentList.querySelectorAll('li')
 
@@ -56,8 +56,9 @@ export default async function scrapList(link) {
     }
 
     const nextButton = document.querySelector('.next')
+    if (!nextButton) break
     const href = nextButton.getAttribute('href')
-    if (href) link = `${letterboxd}${href}`
+    if (href) id = href.slice(1)
     else break
   }
 
