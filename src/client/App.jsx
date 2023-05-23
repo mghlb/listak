@@ -5,7 +5,7 @@ import validUrl from './utils/validator.js'
 import extractId from './utils/extractId.js'
 import {CSVLink} from 'react-csv'
 
-function App() {
+const App = () => {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
   const [spinner, setSpinner] = useState(false)
@@ -18,10 +18,11 @@ function App() {
       setSpinner(true)
       const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
       const data = await res.json()
+      console.log(data)
       const listObj = {
         title: data.title,
         // eslint-disable-next-line no-unused-vars
-        items: data.items.map(({image, fullTitle, ...item}) => item)
+        items: data.items.map(({image, fullTitle, index, ...item}) => item)
       }
       setCsv(listObj)
       setSpinner(false)
