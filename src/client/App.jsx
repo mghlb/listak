@@ -1,5 +1,5 @@
 import './App.css'
-import listakLogo from './assets/logo.webp'
+import listakLogo from '../../public/logo.webp'
 import {useState, useEffect} from 'react'
 import validUrl from './utils/validator.js'
 import extractId from './utils/extractId.js'
@@ -18,7 +18,6 @@ const App = () => {
       setSpinner(true)
       const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
       const data = await res.json()
-      console.log(data)
       const listObj = {
         title: data.title,
         // eslint-disable-next-line no-unused-vars

@@ -25,9 +25,6 @@ export default async function scrapList(id) {
       const filmPage = parse(res)
 
       const meta = filmPage.querySelectorAll('meta')
-      const description = meta
-        .find(e => e.getAttribute('property') === 'og:description')
-        .getAttribute('content')
 
       const director = meta
         .find(e => e.getAttribute('name') === 'twitter:data1')
@@ -38,18 +35,17 @@ export default async function scrapList(id) {
         ?.getAttribute('content')
         .substring(0, 4)
 
-      let releaseYear = meta
+      let year = meta
         .find(e => e.getAttribute('property') === 'og:title')
         .getAttribute('content')
 
-      releaseYear = releaseYear.substring(releaseYear.length - 6)
+      year = year.substring(year.length - 6)
 
       const item = {
         title,
-        releaseYear,
+        year,
         director,
-        rating,
-        description
+        rating
       }
 
       list.push(item)
