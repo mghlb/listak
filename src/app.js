@@ -17,7 +17,7 @@ app.get('/:listId', async (req, res, next) => {
     const response = await fetch(url)
     const data = await response.json()
     res.json(data)
-  } catch {
+  } catch (err) {
     next(err)
   }
 })
