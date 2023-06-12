@@ -1,5 +1,5 @@
 import './App.css'
-import listakLogo from '../../public/logo.webp'
+import listakLogo from './assets/logo.webp'
 import {useState, useEffect} from 'react'
 import validUrl from './utils/validator.js'
 import extractId from './utils/extractId.js'
