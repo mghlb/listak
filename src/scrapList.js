@@ -16,9 +16,9 @@ export default async function scrapList(id) {
     pagesPromises = range(2, pages).map(page => getPage(`${link}/page/${page}`))
   }
 
-  const list = await Promise.all([getFilms(document), ...pagesPromises]).flat()
+  const list = await Promise.all([getFilms(document), ...pagesPromises])
 
-  return {title: h1, items: list}
+  return {title: h1, items: list.flat()}
 }
 
 async function getPage(link) {

@@ -10,27 +10,41 @@ const App = () => {
   const [csv, setCsv] = useState({title: '', items: []})
   const [spinner, setSpinner] = useState(false)
   const [listCache, setListCache] = useState(new Map())
+  const [error, setError] = useState(false)
   const listCheck = csv.items.length > 0
 
   useEffect(() => {
     const id = extractId(link)
     const getData = async () => {
       setSpinner(true)
-      const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
-      const data = await res.json()
-      const listObj = {
-        title: data.title,
-        // eslint-disable-next-line no-unused-vars
-        items: data.items.map(({image, fullTitle, index, ...item}) => item)
+      try {
+        const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
+        const data = await res.json()
+        const listObj = {
+          title: data.title,
+          // eslint-disable-next-line no-unused-vars
+          items: data.items.map(({image, fullTitle, index, ...item}) => item)
+        }
+        setCsv(listObj)
+        setSpinner(false)
+        setError(false)
+        setListCache(listCache.set(id, listObj))
+      } catch (error) {
+        setSpinner(false)
+        setError(true)
       }
-      setCsv(listObj)
-      setSpinner(false)
-      setListCache(listCache.set(id, listObj))
     }
 
     if (listCache.has(id)) setCsv(listCache.get(id))
     if (validUrl(link) && !listCache.has(id)) getData()
   }, [link])
+
+  function inputHandler(event) {
+    setLink(event.target.value)
+    if (event.target.value)
+      event.target.style.width = event.target.value.length + 'ch'
+    else event.target.style.width = '29em'
+  }
 
   return (
     <>
@@ -41,19 +55,22 @@ const App = () => {
         </label>
         <input
           type="url"
-          placeholder="eg. https://www.imdb.com/list/ls012345678"
+          placeholder="eg. imdb.com/list/ls012345678, letterboxd.com/user/list/listname"
           name="list-link"
           id="list-link"
           className="input-field"
           value={link}
-          onChange={event => setLink(event.target.value)}
+          onChange={event => inputHandler(event)}
         />
       </div>
       {spinner && <div className="spinner">⏳</div>}
-      {!spinner && listCheck && (
+      {!spinner && listCheck && !error && (
         <CSVLink data={csv.items} filename={csv.title}>
           <button className="button-5">Save file</button>
         </CSVLink>
+      )}
+      {error && !spinner && (
+        <div className="error-msg">Paste a proper url and retry...</div>
       )}
     </>
   )

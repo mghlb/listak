@@ -6,9 +6,8 @@
 }
 
 .logo {
-  position: relative;
   bottom: 10em;
-  height: 15em;
+  height: 20em;
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
@@ -20,25 +19,19 @@
 .input-container {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 1em;
-  position: relative;
   bottom: 10em;
 }
 
 .input-field {
   border: 1px solid blanchedalmond;
+  align-self: center;
   border-radius: 30px;
   height: 30px;
   font-size: larger;
-  padding: 10px;
-}
-
-.valid-link {
-  border: 1px solid greenyellow;
-}
-
-.unValid-link {
-  border: 1px solid red;
+  padding: 10px 30px;
+  width: 29em;
 }
 
 .button-5 {
@@ -56,10 +49,9 @@
   font-weight: 600;
   justify-content: center;
   line-height: 1.25;
-  margin: 0;
   min-height: 3rem;
+  margin-top: 20px;
   padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
-  position: relative;
   text-decoration: none;
   transition: all 250ms;
   user-select: none;
@@ -77,9 +69,16 @@
   transform: translateY(0);
 }
 
+.error-msg {
+  color: hsl(352, 90%, 50%);
+  font-size: large;
+  margin-top: 20px;
+}
+
 .spinner {
   animation: rotation 2s infinite linear;
   font-size: xx-large;
+  margin-top: 20px;
 }
 
 @keyframes rotation {
