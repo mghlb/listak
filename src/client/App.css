@@ -33,7 +33,7 @@
   min-height: 2em;
 }
 
-.button {
+.save-button {
   align-items: center;
   background-clip: padding-box;
   background-color: #fb8332;
@@ -60,11 +60,11 @@
   width: auto;
 }
 
-.button:hover {
+.save-button:hover {
   transform: translateY(-2px);
 }
 
-.button:active {
+.save-button:active {
   transform: translateY(0);
 }
 
@@ -77,7 +77,7 @@
 .spinner {
   animation: rotation 2s infinite linear;
   font-size: xx-large;
-  margin-top: 20px;
+  margin-top: 1em;
 }
 
 @keyframes rotation {

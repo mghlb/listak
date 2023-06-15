@@ -63,7 +63,7 @@ const App = () => {
       {spinner && <div className="spinner">⏳</div>}
       {!spinner && listCheck && !error && (
         <CSVLink data={csv.items} filename={csv.title}>
-          <button className="button">Save file</button>
+          <button className="save-button">Save file</button>
         </CSVLink>
       )}
       {error && !spinner && (
