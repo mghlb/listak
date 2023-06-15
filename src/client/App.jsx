@@ -41,9 +41,6 @@ const App = () => {
 
   function inputHandler(event) {
     setLink(event.target.value)
-    if (event.target.value)
-      event.target.style.width = event.target.value.length + 'ch'
-    else event.target.style.width = '29em'
   }
 
   return (
@@ -66,7 +63,7 @@ const App = () => {
       {spinner && <div className="spinner">⏳</div>}
       {!spinner && listCheck && !error && (
         <CSVLink data={csv.items} filename={csv.title}>
-          <button className="button-5">Save file</button>
+          <button className="button">Save file</button>
         </CSVLink>
       )}
       {error && !spinner && (

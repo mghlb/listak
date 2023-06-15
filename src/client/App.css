@@ -1,14 +1,13 @@
 #root {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2em;
   text-align: center;
 }
 
 .logo {
-  bottom: 10em;
-  height: 20em;
-  padding: 1.5em;
+  max-height: 20em;
+  max-width: 100%;
   will-change: filter;
   transition: filter 300ms;
 }
@@ -25,16 +24,16 @@
 }
 
 .input-field {
-  border: 1px solid blanchedalmond;
+  border: 1px solid orange;
   align-self: center;
   border-radius: 30px;
-  height: 30px;
   font-size: larger;
   padding: 10px 30px;
-  width: 29em;
+  max-width: 29em;
+  min-height: 2em;
 }
 
-.button-5 {
+.button {
   align-items: center;
   background-clip: padding-box;
   background-color: #fb8332;
@@ -61,11 +60,11 @@
   width: auto;
 }
 
-.button-5:hover {
+.button:hover {
   transform: translateY(-2px);
 }
 
-.button-5:active {
+.button:active {
   transform: translateY(0);
 }
 
@@ -87,5 +86,11 @@
   }
   to {
     transform: rotate(359deg);
+  }
+}
+
+@media (min-width: 40em) {
+  .input-field {
+    width: 29em;
   }
 }
