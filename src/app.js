@@ -1,6 +1,6 @@
 import express from 'express'
 import cors from 'cors'
-import fetch from 'node-fetch'
+import axios from 'axios'
 import scrapList from './scrapList.js'
 import helmet from 'helmet'
 import morgan from 'morgan'
@@ -10,15 +10,14 @@ const app = express()
 app.use(helmet())
 app.use(cors())
 app.use(express.json())
-app.use(morgan('short'))
+app.use(morgan(':method :url :status :response-time ms - [:date[clf]]'))
 
 app.get('/:listId', async (req, res, next) => {
   const id = req.params.listId
   const url = `https://imdb-api.com/en/API/IMDbList/${process.env.API_KEY}/${id}`
   try {
-    const response = await fetch(url)
-    const data = await response.json()
-    res.json(data)
+    const response = await axios.get(url, {responseType: 'json'})
+    res.json(response.data)
   } catch (err) {
     next(err)
   }

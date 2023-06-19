@@ -1,13 +1,14 @@
-import fetch from 'node-fetch'
+import axios from 'axios'
 import {parse} from 'node-html-parser'
+import axiosRetry from 'axios-retry'
 
 const letterboxd = 'https://letterboxd.com'
+axiosRetry(axios, {retries: 3})
 
 export default async function scrapList(id) {
   const link = `${letterboxd}/${id}`
-  const res = await fetch(link)
-  const page = await res.text()
-  const document = parse(page)
+  const res = await axios.get(link, {responseType: 'document'})
+  const document = parse(res.data)
   let h1 = document.querySelector('.title-1').text
   let pagesPromises = []
 
@@ -24,9 +25,8 @@ export default async function scrapList(id) {
 }
 
 async function getPage(link) {
-  const res = await fetch(link)
-  const page = await res.text()
-  const document = parse(page)
+  const res = await axios.get(link, {responseType: 'document'})
+  const document = parse(res.data)
   return await getFilms(document)
 }
 
@@ -41,9 +41,8 @@ async function getFilmDetails(filmList) {
   const film = filmList.querySelector('div')
   const title = film.childNodes[1].getAttribute('alt')
   const filmLink = `${letterboxd}${film.getAttribute('data-target-link')}`
-  const page = await fetch(filmLink)
-  const res = await page.text()
-  const filmPage = parse(res)
+  const page = await axios.get(filmLink, {responseType: 'document'})
+  const filmPage = parse(page.data)
 
   const meta = filmPage.querySelectorAll('meta')
 
