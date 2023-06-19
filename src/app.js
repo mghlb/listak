@@ -3,12 +3,14 @@ import cors from 'cors'
 import fetch from 'node-fetch'
 import scrapList from './scrapList.js'
 import helmet from 'helmet'
+import morgan from 'morgan'
 
 const app = express()
 
 app.use(helmet())
 app.use(cors())
 app.use(express.json())
+app.use(morgan('short'))
 
 app.get('/:listId', async (req, res, next) => {
   const id = req.params.listId
@@ -36,7 +38,7 @@ app.get('/:userId/list/:listId', async (req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   console.error(err)
-  res.status(500).json({message: 'Failed to fetch'})
+  res.status(400).json({message: 'Failed to fetch'})
 })
 
 export default app

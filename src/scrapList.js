@@ -12,7 +12,9 @@ export default async function scrapList(id) {
   let pagesPromises = []
 
   if (document.querySelector('.pagination')) {
-    let pages = parseInt(document.querySelector('.paginate-page > a').text)
+    let pages = parseInt(
+      document.querySelector('.paginate-pages > ul > li:last-child > a').text
+    )
     pagesPromises = range(2, pages).map(page => getPage(`${link}/page/${page}`))
   }
 

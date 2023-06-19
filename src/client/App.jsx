@@ -18,7 +18,7 @@ const App = () => {
     const getData = async () => {
       setSpinner(true)
       try {
-        const res = await fetch(import.meta.env.VITE_BASE_URL + `/${id}`)
+        const res = await fetch('http://localhost:3000' + `/${id}`)
         const data = await res.json()
         const listObj = {
           title: data.title,
@@ -58,6 +58,7 @@ const App = () => {
           className="input-field"
           value={link}
           onChange={event => inputHandler(event)}
+          autoFocus
         />
       </div>
       {spinner && <div className="spinner">⏳</div>}

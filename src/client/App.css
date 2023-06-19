@@ -25,40 +25,44 @@
 }
 
 .input-field {
-  border: 1px solid orange;
+  border: transparent;
   align-self: center;
   border-radius: 30px;
-  font-size: larger;
-  padding: 10px 30px;
-  max-width: 29em;
+  font-size: 1.1rem;
+  padding: 0.5em 1.5em;
+  max-width: 30em;
   min-height: 2em;
 }
 
+.input-field:focus {
+  outline: solid 0.125em hsl(21, 80%, 50%);
+}
+
 .save-button {
+  box-sizing: border-box;
+  width: auto;
+  min-height: 3rem;
+  margin-top: 20px;
+  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+  display: inline-flex;
+  justify-content: center;
   align-items: center;
   background-clip: padding-box;
   background-color: #fb8332;
   border: 1px solid transparent;
   border-radius: 0.25rem;
-  box-sizing: border-box;
   color: #0d0d0dd9;
   font-family: 'Courier New', Courier, monospace;
   cursor: pointer;
-  display: inline-flex;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 600;
-  justify-content: center;
-  line-height: 1.25;
-  min-height: 3rem;
-  margin-top: 20px;
-  padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
   text-decoration: none;
+  line-height: 1.25;
   transition: all 250ms;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: baseline;
-  width: auto;
 }
 
 .save-button:hover {
@@ -71,13 +75,13 @@
 
 .error-msg {
   color: hsl(352, 90%, 50%);
-  font-size: large;
-  margin-top: 20px;
+  font-size: 1.1rem;
+  margin-top: 1em;
 }
 
 .spinner {
   animation: rotation 2s infinite linear;
-  font-size: xx-large;
+  font-size: 2rem;
   margin-top: 1em;
 }
 
@@ -92,6 +96,6 @@
 
 @media (min-width: 40em) {
   .input-field {
-    width: 29em;
+    width: 30em;
   }
 }
