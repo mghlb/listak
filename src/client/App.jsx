@@ -18,7 +18,7 @@ export default function App() {
     const getData = async () => {
       setSpinner(true)
       try {
-        const res = await fetch('http://localhost:3000' + `/${id}`)
+        const res = await fetch(`/${id}`)
         const data = await res.json()
         const listObj = {
           title: data.title,
