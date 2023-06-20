@@ -1,11 +1,11 @@
 import './App.css'
 import listakLogo from './assets/logo.webp'
-import {useState, useEffect} from 'react'
+import {useState, useEffect} from 'preact/hooks'
 import validUrl from './utils/validator.js'
 import extractId from './utils/extractId.js'
 import {CSVLink} from 'react-csv'
 
-const App = () => {
+export default function App() {
   const [link, setLink] = useState('')
   const [csv, setCsv] = useState({title: '', items: []})
   const [spinner, setSpinner] = useState(false)
@@ -73,5 +73,3 @@ const App = () => {
     </>
   )
 }
-
-export default App

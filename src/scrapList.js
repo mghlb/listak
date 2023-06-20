@@ -16,7 +16,8 @@ export default async function scrapList(id) {
     let pages = parseInt(
       document.querySelector('.paginate-pages > ul > li:last-child > a').text
     )
-    pagesPromises = range(2, pages).map(page => getPage(`${link}/page/${page}`))
+    const pagesRange = Array.from({length: pages - 1}, (_, i) => i + 2)
+    pagesPromises = pagesRange.map(page => getPage(`${link}/page/${page}`))
   }
 
   const list = await Promise.all([getFilms(document), ...pagesPromises])
@@ -67,8 +68,4 @@ async function getFilmDetails(filmList) {
     director,
     rating
   }
-}
-
-function range(start, end) {
-  return new Array(end - start + 1).fill(undefined).map((_, i) => i + start)
 }

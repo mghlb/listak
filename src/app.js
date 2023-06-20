@@ -1,9 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
-import scrapList from './scrapList.js'
 import helmet from 'helmet'
 import morgan from 'morgan'
+import scrapList from './scrapList.js'
 
 const app = express()
 
