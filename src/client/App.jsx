@@ -30,6 +30,7 @@ export default function App() {
         setError(false)
         setListCache(listCache.set(id, listObj))
       } catch (error) {
+        console.log(error)
         setSpinner(false)
         setError(true)
       }
@@ -45,7 +46,13 @@ export default function App() {
 
   return (
     <>
-      <img src={listakLogo} alt="Listak-logo" className="logo" />
+      <img
+        src={listakLogo}
+        width="500"
+        height="280"
+        alt="Listak-logo"
+        className="logo"
+      />
       <div className="input-container">
         <label htmlFor="list-link">
           Paste link of IMDB or Letterboxd list:{' '}

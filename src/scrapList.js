@@ -3,7 +3,7 @@ import {parse} from 'node-html-parser'
 import axiosRetry from 'axios-retry'
 
 const letterboxd = 'https://letterboxd.com'
-axiosRetry(axios, {retries: 3})
+axiosRetry(axios, {retries: 5, retryDelay: axiosRetry.exponentialDelay})
 
 export default async function scrapList(id) {
   const link = `${letterboxd}/${id}`

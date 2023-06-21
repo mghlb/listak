@@ -41,4 +41,9 @@ app.use((err, req, res, next) => {
   res.status(400).json({message: 'Failed to fetch'})
 })
 
+/**
+ *
+ * number, string ->
+ */
+
 export default app
