@@ -46,13 +46,7 @@ export default function App() {
 
   return (
     <>
-      <img
-        src={listakLogo}
-        width="500"
-        height="280"
-        alt="Listak-logo"
-        className="logo"
-      />
+      <img src={listakLogo} alt="Listak-logo" className="logo" />
       <div className="input-container">
         <label htmlFor="list-link">
           Paste link of IMDB or Letterboxd list:{' '}
